@@ -5,10 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 
-public class ScrumLabApplication {
+public class DriverApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ScrumLabApplication.class, args);
+        SpringApplication.run(DriverApplication.class, args);
     }
 
 }
