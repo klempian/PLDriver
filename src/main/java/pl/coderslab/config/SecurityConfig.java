@@ -6,7 +6,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import pl.coderslab.service.SpringDataUserDetailsService;
+import pl.coderslab.security.CustomAuthenticationSuccessHandler;
+import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -23,13 +24,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    CustomAuthenticationSuccessHandler successHandler = new CustomAuthenticationSuccessHandler();
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/").permitAll()
-                .antMatchers("/admin/**").authenticated()
-                .and().formLogin().defaultSuccessUrl("/admin")
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .and().formLogin()
+                .successHandler(successHandler)
                 .and().logout().logoutSuccessUrl("/");
     }
 
