@@ -19,8 +19,8 @@ public class AdviceServiceImpl implements AdviceService {
     }
 
     @Override
-    public void save(Advice advice) {
-        adviceRepository.save(advice);
+    public Advice save(Advice advice) {
+        return adviceRepository.save(advice);
     }
 
     @Override

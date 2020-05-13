@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AdviceService {
 
-    void save(Advice advice);
+    Advice save(Advice advice);
 
     Advice findById(Long id);
     List<Advice> findAll();

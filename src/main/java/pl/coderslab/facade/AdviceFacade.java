@@ -28,7 +28,12 @@ public class AdviceFacade {
                 .collect(Collectors.toList());
     }
 
+    public AdviceDto createAdvice(AdviceDto newAdvice) {
+        return convertToAdviceDto(adviceService.save(convertToAdvice(newAdvice)));
+    }
+
     private AdviceDto convertToAdviceDto(Advice advice) {
         return modelMapper.map(advice, AdviceDto.class);
     }
+    private Advice convertToAdvice(AdviceDto adviceDto) {return modelMapper.map(adviceDto, Advice.class);}
 }
