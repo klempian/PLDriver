@@ -1,0 +1,46 @@
+package pl.coderslab.model;
+
+import lombok.Data;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
+import java.util.Set;
+import java.util.TreeSet;
+
+@Data
+@Entity(name = "advices")
+@Table(name = "advices")
+public class Advice {
+
+//    public Advice() {
+//        tags = new TreeSet<>();
+//    }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    private String title;
+
+    private String content;
+
+    private String multimedia;
+
+//    @OrderBy("name ASC")
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "advice_tag", joinColumns = @JoinColumn(name = "advice_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+//    private Set<Tag> tags;
+//
+//    @OneToOne(mappedBy = "advice", cascade = CascadeType.ALL)
+//    private Training training;
+}
