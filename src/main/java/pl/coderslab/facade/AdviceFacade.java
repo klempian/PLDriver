@@ -41,6 +41,11 @@ public class AdviceFacade {
         return convertToAdviceDto(adviceService.save(convertToAdvice(adviceDto)));
     }
 
+    public void deleteAdvice(Long advice_id) {
+        Advice advice = adviceService.findById(advice_id).orElseThrow(() -> new AdviceNotFoundException(advice_id));
+        adviceService.delete(advice);
+    }
+
     private AdviceDto convertToAdviceDto(Advice advice) {
         return modelMapper.map(advice, AdviceDto.class);
     }

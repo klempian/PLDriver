@@ -12,5 +12,5 @@ public interface AdviceService {
     Optional<Advice> findById(Long id);
     List<Advice> findAll();
 
-    void deleteById(Long id);
+    void delete(Advice advice);
 }

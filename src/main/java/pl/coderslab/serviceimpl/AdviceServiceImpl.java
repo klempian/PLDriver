@@ -35,9 +35,7 @@ public class AdviceServiceImpl implements AdviceService {
     }
 
     @Override
-    public void deleteById(Long id) {
-        if (findById(id).isPresent()) {
-            adviceRepository.deleteById(id);
-        }
+    public void delete(Advice advice) {
+            adviceRepository.delete(advice);
     }
 }
