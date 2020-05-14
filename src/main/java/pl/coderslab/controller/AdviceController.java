@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.dto.AdviceDto;
 import pl.coderslab.facade.AdviceFacade;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping("/advice")
@@ -34,8 +35,7 @@ public class AdviceController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public AdviceDto createAdvice(@RequestBody AdviceDto newAdvice) {
-
+    public AdviceDto createAdvice(@RequestBody @Valid AdviceDto newAdvice) {
         return adviceFacade.createAdvice(newAdvice);
     }
 
@@ -45,7 +45,7 @@ public class AdviceController {
     }
 
     @PutMapping("/{advice_id}")
-    public AdviceDto updateAdvice(@RequestBody AdviceDto advice, @PathVariable Long advice_id) {
+    public AdviceDto updateAdvice(@RequestBody @Valid AdviceDto advice, @PathVariable Long advice_id) {
         return adviceFacade.updateAdvice(advice, advice_id);
     }
 

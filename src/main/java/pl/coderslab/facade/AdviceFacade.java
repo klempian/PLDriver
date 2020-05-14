@@ -32,6 +32,7 @@ public class AdviceFacade {
     }
 
     public AdviceDto createAdvice(AdviceDto newAdvice) {
+        newAdvice.setId(null);
         return convertToAdviceDto(adviceService.save(convertToAdvice(newAdvice)));
     }
 

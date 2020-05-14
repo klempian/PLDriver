@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -30,8 +31,10 @@ public class Advice {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank
     private String title;
 
+    @NotBlank
     private String content;
 
     private String multimedia;
