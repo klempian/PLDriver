@@ -23,9 +23,9 @@ import java.util.TreeSet;
 @Table(name = "advices")
 public class Advice {
 
-//    public Advice() {
-//        tags = new TreeSet<>();
-//    }
+    public Advice() {
+        tags = new TreeSet<>();
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,10 +39,9 @@ public class Advice {
 
     private String multimedia;
 
-//    @OrderBy("name ASC")
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "advice_tag", joinColumns = @JoinColumn(name = "advice_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
-//    private Set<Tag> tags;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "advice_tag", joinColumns = @JoinColumn(name = "advice_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private Set<Tag> tags;
 //
 //    @OneToOne(mappedBy = "advice", cascade = CascadeType.ALL)
 //    private Training training;

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(AdviceNotFoundException.class)
+    @ExceptionHandler({AdviceNotFoundException.class, TagNotFoundException.class})
     public void springHandleNotFound(HttpServletResponse response) throws IOException {
         response.sendError(HttpStatus.NOT_FOUND.value());
     }
