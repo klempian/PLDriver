@@ -3,11 +3,13 @@ package pl.coderslab.facade;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import pl.coderslab.dto.AdviceDto;
+import pl.coderslab.exception.AdviceNotFoundException;
 import pl.coderslab.model.Advice;
 import pl.coderslab.service.AdviceService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 public class AdviceFacade {
@@ -19,7 +21,8 @@ public class AdviceFacade {
     private ModelMapper modelMapper;
 
     public AdviceDto getById(Long id) {
-        return convertToAdviceDto(adviceService.findById(id));
+        Advice advice = adviceService.findById(id).orElseThrow(() -> new AdviceNotFoundException(id));
+        return convertToAdviceDto(advice);
     }
 
     public List<AdviceDto> getAll() {
@@ -30,6 +33,12 @@ public class AdviceFacade {
 
     public AdviceDto createAdvice(AdviceDto newAdvice) {
         return convertToAdviceDto(adviceService.save(convertToAdvice(newAdvice)));
+    }
+
+    public AdviceDto updateAdvice(AdviceDto adviceDto, Long advice_id) {
+        Advice advice = adviceService.findById(advice_id).orElseThrow(() -> new AdviceNotFoundException(advice_id));
+        adviceDto.setId(advice.getId());
+        return convertToAdviceDto(adviceService.save(convertToAdvice(adviceDto)));
     }
 
     private AdviceDto convertToAdviceDto(Advice advice) {

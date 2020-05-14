@@ -7,6 +7,7 @@ import pl.coderslab.repository.AdviceRepository;
 import pl.coderslab.service.AdviceService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AdviceServiceImpl implements AdviceService {
@@ -24,8 +25,8 @@ public class AdviceServiceImpl implements AdviceService {
     }
 
     @Override
-    public Advice findById(Long id) {
-        return adviceRepository.findById(id).orElse(null);
+    public Optional<Advice> findById(Long id) {
+        return adviceRepository.findById(id);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class AdviceServiceImpl implements AdviceService {
 
     @Override
     public void deleteById(Long id) {
-        if (findById(id) != null) {
+        if (findById(id).isPresent()) {
             adviceRepository.deleteById(id);
         }
     }
