@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -24,7 +25,7 @@ import java.util.TreeSet;
 public class Advice {
 
     public Advice() {
-        tags = new TreeSet<>();
+        tags = new HashSet<>();
     }
 
     @Id
@@ -39,7 +40,7 @@ public class Advice {
 
     private String multimedia;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "advice_tag", joinColumns = @JoinColumn(name = "advice_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
 //

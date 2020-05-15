@@ -38,8 +38,9 @@ public class TagFacade {
         return convertToTagDto(tagService.save(convertToTag(tagDto)));
     }
 
-    public void deleteTag(Long tag_id) {
-        Tag tag = tagService.findById(tag_id).orElseThrow(() -> new TagNotFoundException(tag_id));
+    public void deleteTag(String tag_name) {
+        Tag tag = tagService.findByName(tag_name).orElseThrow(() -> new TagNotFoundException(tag_name));
+        tag.getAdviceList().forEach(advice -> advice.getTags().remove(tag));
         tagService.delete(tag);
     }
 
@@ -47,6 +48,6 @@ public class TagFacade {
         return modelMapper.map(tag, TagDto.class);
     }
     private Tag convertToTag(TagDto tagDto) {
-        return tagService.findByName(tagDto.getName()).orElse(new Tag());
+        return tagService.findByName(tagDto.getName()).orElse(modelMapper.map(tagDto, Tag.class));
     }
 }
