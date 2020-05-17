@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.coderslab.controller.REST;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,14 +17,14 @@ import pl.coderslab.facade.TagFacade;
 import javax.validation.Valid;
 import java.util.List;
 
-@RequestMapping("/tag")
+@RequestMapping("/api/tag")
 @RestController
-public class TagController {
+public class TagRestController {
 
     private TagFacade tagFacade;
 
     @Autowired
-    public TagController(TagFacade tagFacade) {
+    public TagRestController(TagFacade tagFacade) {
         this.tagFacade = tagFacade;
     }
 
