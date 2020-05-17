@@ -22,6 +22,8 @@ public class AdviceDto {
 
     private String multimedia;
 
+    private TrainingDto training;
+
     private Set<@Valid TagDto> tags;
 
     public Set<TagDto> getTags() {

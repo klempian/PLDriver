@@ -2,28 +2,35 @@ package pl.coderslab.facade;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.coderslab.dto.AdviceDto;
 import pl.coderslab.exception.AdviceNotFoundException;
 import pl.coderslab.model.Advice;
 import pl.coderslab.model.Tag;
 import pl.coderslab.service.AdviceService;
 import pl.coderslab.service.TagService;
+import pl.coderslab.service.TrainingService;
 
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
+@Component
 public class AdviceFacade {
 
-    @Autowired
     private AdviceService adviceService;
-
-    @Autowired
     private TagService tagService;
+    private TrainingService trainingService;
+    private ModelMapper modelMapper;
 
     @Autowired
-    private ModelMapper modelMapper;
+    public AdviceFacade(AdviceService adviceService, TagService tagService, TrainingService trainingService, ModelMapper modelMapper) {
+        this.adviceService = adviceService;
+        this.tagService = tagService;
+        this.trainingService = trainingService;
+        this.modelMapper = modelMapper;
+    }
 
     public AdviceDto getById(Long id) {
         Advice advice = adviceService.findById(id).orElseThrow(() -> new AdviceNotFoundException(id));
@@ -55,13 +62,13 @@ public class AdviceFacade {
     private AdviceDto convertToAdviceDto(Advice advice) {
         return modelMapper.map(advice, AdviceDto.class);
     }
-//    private Advice convertToAdvice(AdviceDto adviceDto) {return modelMapper.map(adviceDto, Advice.class);}
     private Advice convertToAdvice(AdviceDto adviceDto) {
         Advice advice = new Advice();
         advice.setId(adviceDto.getId());
         advice.setTitle(adviceDto.getTitle());
         advice.setContent(adviceDto.getContent());
         advice.setMultimedia(adviceDto.getMultimedia());
+        advice.setTraining(trainingService.findById(adviceDto.getId()).orElse(null));
 
         Set<Tag> tags = new TreeSet<>();
         adviceDto.getTags().forEach(

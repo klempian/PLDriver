@@ -8,25 +8,22 @@
 //import javax.persistence.Id;
 //import javax.persistence.JoinColumn;
 //import javax.persistence.ManyToOne;
-//import javax.persistence.OneToMany;
 //import javax.persistence.Table;
-//import java.util.Set;
 //
 //@Data
-//@Entity(name = "questions")
-//@Table(name = "questions")
-//public class Question {
+//@Entity(name = "answers")
+//@Table(name = "answers")
+//public class Answer {
 //
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.AUTO)
 //    private Long id;
 //
 //    @ManyToOne
-//    @JoinColumn(name = "training_id")
-//    private Training training;
+//    @JoinColumn(name = "question_id")
+//    private Question question;
 //
-//    private String title;
-//
-//    @OneToMany(mappedBy = "question")
-//    private Set<Answer> answers;
+//    private String content;
+//    private String multimedia;
+//    private boolean correct;
 //}

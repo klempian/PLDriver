@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import pl.coderslab.model.Role;
 import pl.coderslab.model.User;
 import pl.coderslab.service.UserService;
@@ -13,6 +14,7 @@ import pl.coderslab.service.UserService;
 import java.util.HashSet;
 import java.util.Set;
 
+@Service
 public class SpringDataUserDetailsService implements UserDetailsService {
 
     private UserService userService;

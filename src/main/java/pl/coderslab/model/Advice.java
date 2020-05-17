@@ -42,7 +42,7 @@ public class Advice {
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "advice_tag", joinColumns = @JoinColumn(name = "advice_id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags;
-//
-//    @OneToOne(mappedBy = "advice", cascade = CascadeType.ALL)
-//    private Training training;
+
+    @OneToOne(mappedBy = "advice", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Training training;
 }

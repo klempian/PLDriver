@@ -2,6 +2,7 @@ package pl.coderslab.facade;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import pl.coderslab.dto.TagDto;
 import pl.coderslab.exception.TagNotFoundException;
 import pl.coderslab.model.Tag;
@@ -10,13 +11,17 @@ import pl.coderslab.service.TagService;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class TagFacade {
 
-    @Autowired
     private TagService tagService;
+    private ModelMapper modelMapper;
 
     @Autowired
-    private ModelMapper modelMapper;
+    public TagFacade(TagService tagService, ModelMapper modelMapper) {
+        this.tagService = tagService;
+        this.modelMapper = modelMapper;
+    }
 
     public TagDto getById(Long tag_id) {
         Tag tag = tagService.findById(tag_id).orElseThrow(() -> new TagNotFoundException(tag_id));
