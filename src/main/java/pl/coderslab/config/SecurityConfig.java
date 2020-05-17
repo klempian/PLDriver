@@ -7,30 +7,41 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
+import pl.coderslab.security.CustomAuthenticationSuccessHandler;
+import pl.coderslab.serviceimpl.SpringDataAdminDetailsService;
+// uncomment if you want users to login via web
+//import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
 
-import static pl.coderslab.security.SecurityConstants.SIGN_UP_URL;
 
-@Order(1)
+@Order(2)
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-
-    public SecurityConfig(SpringDataUserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    // switch these if you want users to login via web (user landing page -> uncomment in CustomAuthenticationSuccessHandler)
+//    public SecurityConfig(SpringDataUserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public SecurityConfig(SpringDataAdminDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-
-    private SpringDataUserDetailsService userDetailsService;
+    // switch these if you want users to login via web
+//    private SpringDataUserDetailsService userDetailsService;
+    private SpringDataAdminDetailsService userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    CustomAuthenticationSuccessHandler successHandler = new CustomAuthenticationSuccessHandler();
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers(SIGN_UP_URL).permitAll()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .and().formLogin();
+        http.csrf().disable()
+                .antMatcher("/**")
+                .authorizeRequests()
+                .antMatchers("/**").hasRole("ADMIN")
+                .and().formLogin()
+                .successHandler(successHandler)
+                .failureUrl("/login?error=true");
+
+        http.sessionManagement().maximumSessions(1).expiredUrl("/login?expired=true");
     }
 
     @Override

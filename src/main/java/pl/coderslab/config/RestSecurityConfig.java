@@ -15,7 +15,7 @@ import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
 
 import static pl.coderslab.security.SecurityConstants.SIGN_UP_URL;
 
-@Order(2)
+@Order(1)
 @Configuration
 @EnableWebSecurity
 public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -31,18 +31,17 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
-                .antMatchers(HttpMethod.POST, "/advice/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/advice/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/advice/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.POST, "/tag/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/tag/**").hasRole("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/tag/**").hasRole("ADMIN")
+        http.csrf().disable()
+                .antMatcher("/api/**")
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST, "/api/login").permitAll()
+                .antMatchers("/api/**").hasRole("USER")
                 .and()
                 .addFilter(new JWTAuthenticationFilter(authenticationManager()))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), userDetailsService))
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        ;
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+
     }
 
     @Override

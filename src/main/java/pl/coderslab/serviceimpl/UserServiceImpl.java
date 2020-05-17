@@ -31,6 +31,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByUsernameAndRoleName(String username, String roleName) {return userRepository.findByUsernameAndRolesContains(username, roleRepository.findByName(roleName)); }
+
+    @Override
     public void saveUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setEnabled(1);
