@@ -41,6 +41,7 @@ public class TrainingFacade {
 
     public void deleteTraining(Long training_id) {
         Training training = trainingService.findById(training_id).orElseThrow(() -> new TrainingNotFoundException(training_id));
+        training.getAdvice().setTraining(null);
         trainingService.delete(training);
     }
 

@@ -25,7 +25,7 @@ public class TrainingServiceImpl implements TrainingService {
 
     @Override
     public Optional<Training> findById(Long id) {
-        return trainingRepository.findById(id);
+        return id != null ? trainingRepository.findById(id) : Optional.empty();
     }
 
     @Override
