@@ -4,16 +4,19 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 
 @Data
 @Entity(name = "trainings")
@@ -21,10 +24,12 @@ import java.util.Set;
 public class Training {
 
     public Training() {
+        questions = new ArrayList<>();
     }
 
     public Training(Advice advice) {
         this.advice = advice;
+        questions = new ArrayList<>();
     }
 
     @Id
@@ -36,8 +41,9 @@ public class Training {
     @PrimaryKeyJoinColumn
     private Advice advice;
 
-//    @OneToMany(mappedBy = "training")
-//    private Set<Question> questions;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "training_id")
+    private List<Question> questions;
 
     @Override
     public boolean equals(Object o) {
