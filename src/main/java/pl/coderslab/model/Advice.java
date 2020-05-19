@@ -16,6 +16,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Data
@@ -45,4 +46,17 @@ public class Advice {
 
     @OneToOne(mappedBy = "advice", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Training training;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Advice advice = (Advice) o;
+        return Objects.equals(id, advice.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

@@ -59,6 +59,10 @@ public class AdviceFacade {
         adviceService.delete(advice);
     }
 
+    public AdviceDto getWeeklyAdvice() {
+        return convertToAdviceDto(adviceService.getWeeklyAdvice());
+    }
+
     private AdviceDto convertToAdviceDto(Advice advice) {
         return modelMapper.map(advice, AdviceDto.class);
     }

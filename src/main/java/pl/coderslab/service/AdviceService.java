@@ -12,5 +12,7 @@ public interface AdviceService {
     Optional<Advice> findById(Long id);
     List<Advice> findAll();
 
+    Advice getWeeklyAdvice();
+
     void delete(Advice advice);
 }

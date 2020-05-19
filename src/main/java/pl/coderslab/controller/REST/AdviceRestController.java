@@ -53,4 +53,9 @@ public class AdviceRestController {
     public void deleteAdvice(@PathVariable Long advice_id) {
         adviceFacade.deleteAdvice(advice_id);
     }
+
+    @GetMapping("/weekly")
+    public AdviceDto getWeeklyAdvice() {
+        return adviceFacade.getWeeklyAdvice();
+    }
 }
