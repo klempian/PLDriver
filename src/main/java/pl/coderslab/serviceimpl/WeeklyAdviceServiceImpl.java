@@ -3,7 +3,7 @@ package pl.coderslab.serviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.model.WeeklyAdvice;
-import pl.coderslab.repository.WeeklyAdviceRepository;
+import pl.coderslab.repositories.WeeklyAdviceRepository;
 import pl.coderslab.service.WeeklyAdviceService;
 
 import javax.transaction.Transactional;

@@ -23,8 +23,8 @@ public class TagFacade {
         this.modelMapper = modelMapper;
     }
 
-    public TagDto getById(Long tag_id) {
-        Tag tag = tagService.findById(tag_id).orElseThrow(() -> new TagNotFoundException(tag_id));
+    public TagDto getByName(String tag_name) {
+        Tag tag = tagService.findByName(tag_name).orElseThrow(() -> new TagNotFoundException(tag_name));
         return convertToTagDto(tag);
     }
 
@@ -38,8 +38,8 @@ public class TagFacade {
         return convertToTagDto(tagService.save(convertToTag(newTag)));
     }
 
-    public TagDto updateTag(TagDto tagDto, Long tag_id) {
-        tagService.findById(tag_id).orElseThrow(() -> new TagNotFoundException(tag_id));
+    public TagDto updateTag(TagDto tagDto, String tag_name) {
+        tagService.findByName(tag_name).orElseThrow(() -> new TagNotFoundException(tag_name));
         return convertToTagDto(tagService.save(convertToTag(tagDto)));
     }
 

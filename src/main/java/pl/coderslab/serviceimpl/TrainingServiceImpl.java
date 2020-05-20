@@ -3,7 +3,7 @@ package pl.coderslab.serviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.model.Training;
-import pl.coderslab.repository.TrainingRepository;
+import pl.coderslab.repositories.TrainingRepository;
 import pl.coderslab.service.TrainingService;
 
 import java.util.Optional;

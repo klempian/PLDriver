@@ -4,8 +4,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.coderslab.model.Role;
 import pl.coderslab.model.User;
-import pl.coderslab.repository.RoleRepository;
-import pl.coderslab.repository.UserRepository;
+import pl.coderslab.repositories.RoleRepository;
+import pl.coderslab.repositories.UserRepository;
 import pl.coderslab.service.UserService;
 
 import java.util.Arrays;

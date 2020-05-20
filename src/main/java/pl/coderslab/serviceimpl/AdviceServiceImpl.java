@@ -3,10 +3,10 @@ package pl.coderslab.serviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.model.Advice;
-import pl.coderslab.repository.AdviceRepository;
+import pl.coderslab.repositories.AdviceRepository;
 import pl.coderslab.service.AdviceService;
 import pl.coderslab.service.WeeklyAdviceService;
-import pl.coderslab.utility.RandomWeeklyAdvice;
+import pl.coderslab.util.RandomWeeklyAdvice;
 
 import java.util.List;
 import java.util.Optional;

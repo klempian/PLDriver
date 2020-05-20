@@ -13,8 +13,6 @@ import pl.coderslab.security.JWTAuthenticationFilter;
 import pl.coderslab.security.JWTAuthorizationFilter;
 import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
 
-import static pl.coderslab.security.SecurityConstants.SIGN_UP_URL;
-
 @Order(1)
 @Configuration
 @EnableWebSecurity

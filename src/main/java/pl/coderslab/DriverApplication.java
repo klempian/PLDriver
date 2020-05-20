@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @EnableScheduling
 @SpringBootApplication
-
 public class DriverApplication {
 
     @Bean

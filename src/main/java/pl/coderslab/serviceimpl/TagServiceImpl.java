@@ -2,11 +2,8 @@ package pl.coderslab.serviceimpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.coderslab.model.Advice;
 import pl.coderslab.model.Tag;
-import pl.coderslab.repository.AdviceRepository;
-import pl.coderslab.repository.TagRepository;
-import pl.coderslab.service.AdviceService;
+import pl.coderslab.repositories.TagRepository;
 import pl.coderslab.service.TagService;
 
 import java.util.List;

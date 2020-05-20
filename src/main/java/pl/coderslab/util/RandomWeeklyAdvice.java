@@ -1,4 +1,4 @@
-package pl.coderslab.utility;
+package pl.coderslab.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -6,7 +6,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import pl.coderslab.model.WeeklyAdvice;
-import pl.coderslab.repository.AdviceRepository;
+import pl.coderslab.repositories.AdviceRepository;
 import pl.coderslab.service.WeeklyAdviceService;
 
 import java.util.List;

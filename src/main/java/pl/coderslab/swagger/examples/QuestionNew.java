@@ -1,15 +1,10 @@
-package pl.coderslab.dto;
+package pl.coderslab.swagger.examples;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
-import lombok.Setter;
 
 @Getter
-@Setter
-public class QuestionDto {
-
-    @ApiModelProperty(required = true, example = "1")
-    private Long id;
+public class QuestionNew {
 
     @ApiModelProperty(required = true, example = "Duis fringilla justo at lacus tempus porttitor?")
     private String title;

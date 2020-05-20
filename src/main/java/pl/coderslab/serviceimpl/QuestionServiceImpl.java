@@ -3,7 +3,7 @@ package pl.coderslab.serviceimpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.model.Question;
-import pl.coderslab.repository.QuestionRepository;
+import pl.coderslab.repositories.QuestionRepository;
 import pl.coderslab.service.QuestionService;
 
 import java.util.Optional;
