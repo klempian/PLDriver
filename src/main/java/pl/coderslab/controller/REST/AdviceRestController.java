@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.dto.AdviceDto;
@@ -57,6 +58,12 @@ import java.util.List;
             public AdviceDto getById(@PathVariable Long advice_id) {
             return adviceFacade.getById(advice_id);
         }
+
+        @ApiImplicitParam(name = "tag_name", required = true, example = "safety", value = "name of the tag")
+        @ApiOperation(value = "Get all advices by tag", notes = "returns list of advices containing tag with given tag name")
+
+            @GetMapping("/tag_{tag_name}")
+            public List<AdviceDto> adviceListByTag(@PathVariable String tag_name) { return adviceFacade.getByTagName(tag_name); }
 
         @ApiImplicitParams({
                 @ApiImplicitParam(name = "advice_id", required = true, dataType = "int", example = "1", value = "id of the advice"),

@@ -43,6 +43,12 @@ public class AdviceFacade {
                 .collect(Collectors.toList());
     }
 
+    public List<AdviceDto> getByTagName(String tag_name) {
+        return adviceService.findByTagName(tag_name).stream()
+                .map(this::convertToAdviceDto)
+                .collect(Collectors.toList());
+    }
+
     public AdviceDto createAdvice(AdviceDto newAdvice) {
         newAdvice.setId(null);
         return convertToAdviceDto(adviceService.save(convertToAdvice(newAdvice)));
