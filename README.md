@@ -31,8 +31,14 @@ admin login details:
     password: admin
 
 user login details:
+
     username: user
     password: user
+
+run:
+
+    mvn spring-boot:run
+
 
 ### In progress
 
@@ -40,4 +46,4 @@ user login details:
 * user quiz points
 * share and recommend
 * forum
-
+* mvc
