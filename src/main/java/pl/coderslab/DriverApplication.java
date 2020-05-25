@@ -16,11 +16,6 @@ public class DriverApplication {
         return new ModelMapper();
     }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(DriverApplication.class, args);
     }

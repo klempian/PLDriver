@@ -1,5 +1,6 @@
 package pl.coderslab.util;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -13,16 +14,11 @@ import java.util.List;
 import java.util.Random;
 
 @Component
+@RequiredArgsConstructor
 public class RandomWeeklyAdvice {
 
     private final AdviceRepository adviceRepository;
-    private WeeklyAdviceService weeklyAdviceService;
-
-    @Autowired
-    public RandomWeeklyAdvice(AdviceRepository adviceRepository, WeeklyAdviceService weeklyAdviceService) {
-        this.adviceRepository = adviceRepository;
-        this.weeklyAdviceService = weeklyAdviceService;
-    }
+    private final WeeklyAdviceService weeklyAdviceService;
 
     @Scheduled(cron = "0 0 0 ? * MON")
     @EventListener(ApplicationReadyEvent.class)
