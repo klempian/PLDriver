@@ -9,8 +9,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.coderslab.security.CustomAuthenticationSuccessHandler;
 import pl.coderslab.serviceimpl.SpringDataAdminDetailsService;
-// uncomment if you want users to login via web
-//import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
 
 
 @Order(2)
@@ -18,14 +16,11 @@ import pl.coderslab.serviceimpl.SpringDataAdminDetailsService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    // switch these if you want users to login via web (user landing page -> uncomment in CustomAuthenticationSuccessHandler)
-//    public SecurityConfig(SpringDataUserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
     public SecurityConfig(SpringDataAdminDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userDetailsService = userDetailsService;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
-    // switch these if you want users to login via web
-//    private SpringDataUserDetailsService userDetailsService;
+
     private SpringDataAdminDetailsService userDetailsService;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 

@@ -12,9 +12,9 @@ public interface AdviceService {
     Optional<Advice> findById(Long id);
     List<Advice> findAll();
 
-    List<Advice> findByTagName(String tag_name);
+    List<Advice> findByTagName(String tagName);
 
-    Advice getWeeklyAdvice();
+    Advice getWeekly();
 
     void delete(Advice advice);
 }

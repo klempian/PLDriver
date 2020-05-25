@@ -66,7 +66,7 @@ public class AdviceFacade {
     }
 
     public AdviceDto getWeeklyAdvice() {
-        return convertToAdviceDto(adviceService.getWeeklyAdvice());
+        return convertToAdviceDto(adviceService.getWeekly());
     }
 
     private AdviceDto convertToAdviceDto(Advice advice) {

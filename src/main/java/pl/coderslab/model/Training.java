@@ -20,7 +20,6 @@ import java.util.Objects;
 
 @Data
 @Entity(name = "trainings")
-@Table(name = "trainings")
 public class Training {
 
     public Training() {

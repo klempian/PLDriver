@@ -10,7 +10,6 @@ public interface TagService {
     Tag save(Tag tag);
 
     Optional<Tag> findByName(String name);
-    Optional<Tag> findById(Long id);
     List<Tag> findAll();
 
     void delete(Tag tag);

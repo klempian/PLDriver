@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface AdviceRepository extends JpaRepository<Advice, Long> {
 
-    @Query("SELECT id FROM advices")
+    @Query("SELECT id FROM Advice")
     List<Long> getAllIds();
 
     List<Advice> getAllByTagsContains(Tag tag);

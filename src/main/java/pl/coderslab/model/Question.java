@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.util.Set;
 
 @Data
-@Entity(name = "questions")
+@Entity
 @Table(name = "questions")
 public class Question {
 

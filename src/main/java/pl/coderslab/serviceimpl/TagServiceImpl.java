@@ -28,11 +28,6 @@ public class TagServiceImpl implements TagService {
     public Optional<Tag> findByName(String name) { return tagRepository.findByName(name); }
 
     @Override
-    public Optional<Tag> findById(Long id) {
-        return tagRepository.findById(id);
-    }
-
-    @Override
     public List<Tag> findAll() {
         return tagRepository.findAll();
     }

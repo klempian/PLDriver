@@ -46,22 +46,22 @@ public class AdviceServiceImpl implements AdviceService {
     }
 
     @Override
-    public List<Advice> findByTagName(String tag_name) {
+    public List<Advice> findByTagName(String tagName) {
 
-        return adviceRepository.getAllByTagsContains(tagService.findByName(tag_name).orElseThrow(() -> new TagNotFoundException(tag_name)));
+        return adviceRepository.getAllByTagsContains(tagService.findByName(tagName).orElseThrow(() -> new TagNotFoundException(tagName)));
     }
 
     @Override
-    public Advice getWeeklyAdvice() {
+    public Advice getWeekly() {
         if (adviceRepository.count() == 0) { return new Advice(); }
 
-        Long adviceId = weeklyAdviceService.findFirstByOrderByIdDesc().getAdvice_id();
+        Long adviceId = weeklyAdviceService.findFirstByOrderByIdDesc().getAdviceId();
         Optional<Advice> optionalAdvice = adviceRepository.findById(adviceId);
         if (optionalAdvice.isPresent()) {
             return optionalAdvice.get();
         } else {
             randomWeeklyAdvice.getRandomWeeklyAdvice();
-            return getWeeklyAdvice();
+            return getWeekly();
         }
     }
 

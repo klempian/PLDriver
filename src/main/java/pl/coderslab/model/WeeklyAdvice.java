@@ -9,20 +9,20 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
-@Entity(name = "weekly_advices")
+@Entity
 @Table(name = "weekly_advices")
 public class WeeklyAdvice {
 
     public WeeklyAdvice() {
     }
 
-    public WeeklyAdvice(Long advice_id) {
-        this.advice_id = advice_id;
+    public WeeklyAdvice(Long adviceId) {
+        this.adviceId = adviceId;
     }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long advice_id;
+    private Long adviceId;
 }

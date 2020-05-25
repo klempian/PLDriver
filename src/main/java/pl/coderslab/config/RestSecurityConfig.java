@@ -13,6 +13,8 @@ import pl.coderslab.security.JWTAuthenticationFilter;
 import pl.coderslab.security.JWTAuthorizationFilter;
 import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
 
+import static pl.coderslab.security.SecurityConstants.SIGN_UP_URL;
+
 @Order(1)
 @Configuration
 @EnableWebSecurity
@@ -32,7 +34,7 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .antMatcher("/api/**")
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/api/login").permitAll()
+                .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .antMatchers(HttpMethod.POST, "/api/advice/{advice_id}/training/").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/advice/").hasRole("ADMIN")
                 .antMatchers(HttpMethod.PUT, "/api/advice/**").hasRole("ADMIN")

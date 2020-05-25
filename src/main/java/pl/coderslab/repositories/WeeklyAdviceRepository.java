@@ -11,7 +11,7 @@ import java.util.List;
 @Repository
 public interface WeeklyAdviceRepository extends JpaRepository<WeeklyAdvice, Long> {
 
-    @Query("SELECT advice_id FROM weekly_advices")
+    @Query("SELECT adviceId FROM WeeklyAdvice")
     List<Long> getAllAdviceIds();
 
     WeeklyAdvice findFirstByOrderByIdDesc();

@@ -1,6 +1,5 @@
 package pl.coderslab.dto;
 
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 
 import javax.validation.constraints.Pattern;
@@ -14,7 +13,6 @@ public class TagDto implements Comparable<TagDto> {
         return this.getName().compareTo(h.getName());
     }
 
-    @ApiModelProperty(required = true, example = "safety")
     @Size(max = 30, message = "{validation.constraints.Tag.Name.Size.message}")
     @Pattern(regexp = "^[A-Za-z]+$", message = "{validation.constraints.Tag.Name.Pattern.message}")
     private String name;

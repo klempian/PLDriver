@@ -25,6 +25,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Collections;
 import java.util.List;
 
+import static pl.coderslab.security.SecurityConstants.HEADER_STRING;
+
 @EnableSwagger2
 @Configuration
 @Import(BeanValidatorPluginsConfiguration.class)
@@ -33,18 +35,19 @@ public class SpringFoxConfig {
     TypeResolver typeResolver = new TypeResolver();
 
     @Bean
-    public Docket get() { return new Docket(DocumentationType.SWAGGER_2)
-            .select()
-            .paths(PathSelectors.ant("/api/**"))
-            .build().apiInfo(createApiInfo())
-            .securitySchemes(Lists.newArrayList(apiKey()))
-            .securityContexts(Lists.newArrayList(securityContext()))
-            .additionalModels(typeResolver.resolve(UserLogin.class),
-                    typeResolver.resolve(UserToken.class),
-                    typeResolver.resolve(AdviceNew.class),
-                    typeResolver.resolve(TrainingNew.class),
-                    typeResolver.resolve(QuestionNew.class)
-            );
+    public Docket get() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .paths(PathSelectors.ant("/api/**"))
+                .build().apiInfo(createApiInfo())
+                .securitySchemes(Lists.newArrayList(apiKey()))
+                .securityContexts(Lists.newArrayList(securityContext()))
+                .additionalModels(typeResolver.resolve(UserLogin.class),
+                        typeResolver.resolve(UserToken.class),
+                        typeResolver.resolve(AdviceNew.class),
+                        typeResolver.resolve(TrainingNew.class),
+                        typeResolver.resolve(QuestionNew.class)
+                );
     }
 
     @Bean
@@ -68,7 +71,7 @@ public class SpringFoxConfig {
     }
 
     private ApiKey apiKey() {
-        return new ApiKey("JWT", "Authorization", "header");
+        return new ApiKey("JWT", HEADER_STRING, "header");
     }
 
     private ApiInfo createApiInfo() {
@@ -82,7 +85,7 @@ public class SpringFoxConfig {
                 "",
                 "",
                 Collections.emptyList()
-                );
+        );
     }
 
 }

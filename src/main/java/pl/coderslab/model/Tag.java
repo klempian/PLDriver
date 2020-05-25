@@ -14,7 +14,7 @@ import java.util.Objects;
 import java.util.Set;
 
 @Data
-@Entity(name = "tags")
+@Entity
 @Table(name = "tags")
 public class Tag implements Comparable<Tag>{
 

@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUserName(String username) {
+    public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
 
@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
         admin.setEnabled(1);
         Role userRole = roleRepository.findByName("ROLE_USER");
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-        admin.setRoles(new HashSet<Role>(Arrays.asList(userRole, adminRole)));
+        admin.setRoles(new HashSet<>(Arrays.asList(userRole, adminRole)));
 
         userRepository.save(admin);
     }
