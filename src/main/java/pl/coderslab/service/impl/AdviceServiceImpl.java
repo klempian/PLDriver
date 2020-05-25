@@ -2,7 +2,7 @@ package pl.coderslab.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.coderslab.exception.TagNotFoundException;
+import pl.coderslab.exception.ResourceNotFoundException;
 import pl.coderslab.model.Advice;
 import pl.coderslab.repositories.AdviceRepository;
 import pl.coderslab.service.AdviceService;
@@ -47,7 +47,7 @@ public class AdviceServiceImpl implements AdviceService {
     @Override
     public List<Advice> findByTagName(String tagName) {
 
-        return adviceRepository.getAllByTagsContains(tagService.findByName(tagName).orElseThrow(() -> new TagNotFoundException(tagName)));
+        return adviceRepository.getAllByTagsContains(tagService.findByName(tagName).orElseThrow(() -> new ResourceNotFoundException("Tag", tagName)));
     }
 
     @Override

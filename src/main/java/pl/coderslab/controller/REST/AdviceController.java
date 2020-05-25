@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.converter.AdviceConverter;
 import pl.coderslab.dto.AdviceDto;
-import pl.coderslab.exception.AdviceNotFoundException;
+import pl.coderslab.exception.ResourceNotFoundException;
 import pl.coderslab.model.Advice;
 import pl.coderslab.service.AdviceService;
 
@@ -46,7 +46,7 @@ public class AdviceController {
     @GetMapping("/{adviceId}")
     public AdviceDto getById(@PathVariable Long adviceId) {
 
-        Advice advice = adviceService.findById(adviceId).orElseThrow(() -> new AdviceNotFoundException(adviceId));
+        Advice advice = adviceService.findById(adviceId).orElseThrow(() -> new ResourceNotFoundException("Advice", adviceId));
         return adviceConverter.convertToAdviceDto(advice);
     }
 
@@ -63,7 +63,7 @@ public class AdviceController {
 
     @PutMapping("/{adviceId}")
     public AdviceDto update(@RequestBody @Valid AdviceDto adviceDto, @PathVariable Long adviceId) {
-        Advice advice = adviceService.findById(adviceId).orElseThrow(() -> new AdviceNotFoundException(adviceId));
+        Advice advice = adviceService.findById(adviceId).orElseThrow(() -> new ResourceNotFoundException("Advice", adviceId));
         adviceDto.setId(advice.getId());
         return adviceConverter.convertToAdviceDto(adviceService.save(adviceConverter.convertToAdvice(adviceDto)));
     }
@@ -71,7 +71,7 @@ public class AdviceController {
     @DeleteMapping("/{adviceId}")
     public void delete(@PathVariable Long adviceId) {
 
-        Advice advice = adviceService.findById(adviceId).orElseThrow(() -> new AdviceNotFoundException(adviceId));
+        Advice advice = adviceService.findById(adviceId).orElseThrow(() -> new ResourceNotFoundException("Advice", adviceId));
         adviceService.delete(advice);
     }
 

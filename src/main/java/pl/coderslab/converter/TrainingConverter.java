@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 import pl.coderslab.dto.TrainingDto;
-import pl.coderslab.exception.AdviceNotFoundException;
+import pl.coderslab.exception.ResourceNotFoundException;
 import pl.coderslab.model.Advice;
 import pl.coderslab.model.Question;
 import pl.coderslab.model.Training;
@@ -29,7 +29,7 @@ public class TrainingConverter {
     }
 
     public Training convertToTraining(TrainingDto trainingDto, Long trainingId) {
-        Advice advice = adviceService.findById(trainingId).orElseThrow(() -> new AdviceNotFoundException(trainingId));
+        Advice advice = adviceService.findById(trainingId).orElseThrow(() -> new ResourceNotFoundException("Advice", trainingId));
         Training training = trainingService.findById(trainingId).orElse(new Training(advice));
         List<Question> questions = new ArrayList<>();
         trainingDto.getQuestions().forEach(

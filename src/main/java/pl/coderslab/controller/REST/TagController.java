@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.converter.TagConverter;
 import pl.coderslab.dto.TagDto;
-import pl.coderslab.exception.TagNotFoundException;
+import pl.coderslab.exception.ResourceNotFoundException;
 import pl.coderslab.model.Tag;
 import pl.coderslab.service.TagService;
 
@@ -44,19 +44,19 @@ public class TagController {
 
     @GetMapping("/{tagName}")
     public TagDto getByName(@PathVariable String tagName) {
-        Tag tag = tagService.findByName(tagName).orElseThrow(() -> new TagNotFoundException(tagName));
+        Tag tag = tagService.findByName(tagName).orElseThrow(() -> new ResourceNotFoundException("Tag", tagName));
         return tagConverter.convertToTagDto(tag);
     }
 
     @PutMapping("/{tagName}")
     public TagDto update(@RequestBody @Valid TagDto tagDto, @PathVariable String tagName) {
-        tagService.findByName(tagName).orElseThrow(() -> new TagNotFoundException(tagName));
+        tagService.findByName(tagName).orElseThrow(() -> new ResourceNotFoundException("Tag", tagName));
         return tagConverter.convertToTagDto(tagService.save(tagConverter.convertToTag(tagDto)));
     }
 
     @DeleteMapping("/{tagName}")
     public void delete(@PathVariable String tagName) {
-        Tag tag = tagService.findByName(tagName).orElseThrow(() -> new TagNotFoundException(tagName));
+        Tag tag = tagService.findByName(tagName).orElseThrow(() -> new ResourceNotFoundException("Tag", tagName));
         tag.getAdviceList().forEach(advice -> advice.getTags().remove(tag));
         tagService.delete(tag);
     }

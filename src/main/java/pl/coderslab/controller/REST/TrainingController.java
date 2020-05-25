@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.converter.TrainingConverter;
 import pl.coderslab.dto.TrainingDto;
-import pl.coderslab.exception.TrainingNotFoundException;
+import pl.coderslab.exception.ResourceNotFoundException;
 import pl.coderslab.model.Training;
 import pl.coderslab.service.TrainingService;
 
@@ -35,19 +35,19 @@ public class TrainingController {
 
     @GetMapping("/")
     public TrainingDto getByAdviceId(@PathVariable Long adviceId) {
-        Training training = trainingService.findById(adviceId).orElseThrow(() -> new TrainingNotFoundException(adviceId));
+        Training training = trainingService.findById(adviceId).orElseThrow(() -> new ResourceNotFoundException("Training", adviceId));
         return trainingConverter.convertToTrainingDto(training);
     }
 
     @PutMapping("/")
     public TrainingDto update(@RequestBody @Valid TrainingDto trainingDto, @PathVariable Long adviceId) {
-        trainingService.findById(adviceId).orElseThrow(() -> new TrainingNotFoundException(adviceId));
+        trainingService.findById(adviceId).orElseThrow(() -> new ResourceNotFoundException("Training", adviceId));
         return trainingConverter.convertToTrainingDto(trainingService.save(trainingConverter.convertToTraining(trainingDto, adviceId)));
     }
 
     @DeleteMapping("/")
     public void delete(@PathVariable Long adviceId) {
-        Training training = trainingService.findById(adviceId).orElseThrow(() -> new TrainingNotFoundException(adviceId));
+        Training training = trainingService.findById(adviceId).orElseThrow(() -> new ResourceNotFoundException("Training", adviceId));
         training.getAdvice().setTraining(null);
         trainingService.delete(training);
     }
