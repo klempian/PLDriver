@@ -11,7 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import pl.coderslab.security.JWTAuthenticationFilter;
 import pl.coderslab.security.JWTAuthorizationFilter;
-import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
+import pl.coderslab.service.impl.SpringDataUserDetailsService;
 
 import static pl.coderslab.security.SecurityConstants.SIGN_UP_URL;
 

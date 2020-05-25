@@ -1,4 +1,4 @@
-package pl.coderslab.serviceimpl;
+package pl.coderslab.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class SpringDataUserDetailsService implements UserDetailsService {
+public class SpringDataAdminDetailsService implements UserDetailsService {
 
     private UserService userService;
 
@@ -27,7 +27,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
 
-        User user = userService.findByUsername(username);
+        User user = userService.findByUsernameAndRoleName(username, "ROLE_ADMIN");
 
         if (user == null) {throw new UsernameNotFoundException(username); }
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();

@@ -1,10 +1,9 @@
-package pl.coderslab.serviceimpl;
+package pl.coderslab.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.coderslab.exception.TagNotFoundException;
 import pl.coderslab.model.Advice;
-import pl.coderslab.model.Tag;
 import pl.coderslab.repositories.AdviceRepository;
 import pl.coderslab.service.AdviceService;
 import pl.coderslab.service.TagService;

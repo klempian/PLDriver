@@ -7,7 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
-import pl.coderslab.serviceimpl.SpringDataUserDetailsService;
+import pl.coderslab.service.impl.SpringDataUserDetailsService;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
