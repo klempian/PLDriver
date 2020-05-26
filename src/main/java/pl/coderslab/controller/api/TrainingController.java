@@ -1,4 +1,4 @@
-package pl.coderslab.controller.REST;
+package pl.coderslab.controller.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.converter.TrainingConverter;
 import pl.coderslab.dto.TrainingDto;
+import pl.coderslab.dto.TrainingNewDto;
 import pl.coderslab.exception.ResourceNotFoundException;
 import pl.coderslab.model.Training;
 import pl.coderslab.service.TrainingService;
@@ -29,7 +30,7 @@ public class TrainingController {
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public TrainingDto create(@PathVariable Long adviceId, @RequestBody @Valid TrainingDto newTraining) {
+    public TrainingDto create(@PathVariable Long adviceId, @RequestBody @Valid TrainingNewDto newTraining) {
         return trainingConverter.convertToTrainingDto(trainingService.save(trainingConverter.convertToTraining(newTraining, adviceId)));
     }
 

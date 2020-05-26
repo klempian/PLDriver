@@ -5,9 +5,7 @@ import com.google.common.collect.Lists;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import pl.coderslab.swagger.examples.AdviceNew;
-import pl.coderslab.swagger.examples.QuestionNew;
-import pl.coderslab.swagger.examples.TrainingNew;
+import pl.coderslab.dto.QuestionNewDto;
 import pl.coderslab.swagger.examples.UserLogin;
 import pl.coderslab.swagger.examples.UserToken;
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
@@ -43,10 +41,7 @@ public class SpringFoxConfig {
                 .securitySchemes(Lists.newArrayList(apiKey()))
                 .securityContexts(Lists.newArrayList(securityContext()))
                 .additionalModels(typeResolver.resolve(UserLogin.class),
-                        typeResolver.resolve(UserToken.class),
-                        typeResolver.resolve(AdviceNew.class),
-                        typeResolver.resolve(TrainingNew.class),
-                        typeResolver.resolve(QuestionNew.class)
+                        typeResolver.resolve(UserToken.class)
                 );
     }
 

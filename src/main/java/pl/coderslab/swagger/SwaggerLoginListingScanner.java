@@ -42,7 +42,7 @@ public class SwaggerLoginListingScanner implements ApiListingScannerPlugin {
                         new ApiDescription(null, "/api/login", "login", Collections.singletonList(
                                 new OperationBuilder(operationNames)
                                         .summary("login")
-                                        .tags(Set.of("Login Controller"))
+                                        .tags(Set.of("login-controller"))
                                         .authorizations(new ArrayList<>())
                                         .position(1)
                                         .codegenMethodNameStem("loginPost")

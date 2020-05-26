@@ -1,4 +1,4 @@
-package pl.coderslab.controller.REST;
+package pl.coderslab.controller.api;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import pl.coderslab.converter.AdviceConverter;
 import pl.coderslab.dto.AdviceDto;
+import pl.coderslab.dto.AdviceOnlyDto;
+import pl.coderslab.dto.AdviceNewDto;
+import pl.coderslab.dto.AdviceShortDto;
 import pl.coderslab.exception.ResourceNotFoundException;
 import pl.coderslab.model.Advice;
 import pl.coderslab.service.AdviceService;
@@ -30,16 +33,15 @@ public class AdviceController {
     private final AdviceConverter adviceConverter;
 
     @GetMapping("/")
-    public List<AdviceDto> list() {
+    public List<AdviceShortDto> list() {
         return adviceService.findAll().stream()
-                .map(adviceConverter::convertToAdviceDto)
+                .map(adviceConverter::convertToAdviceShortDto)
                 .collect(Collectors.toList());
     }
 
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
-    public AdviceDto create(@RequestBody @Valid AdviceDto newAdvice) {
-        newAdvice.setId(null);
+    public AdviceDto create(@RequestBody @Valid AdviceNewDto newAdvice) {
         return adviceConverter.convertToAdviceDto(adviceService.save(adviceConverter.convertToAdvice(newAdvice)));
     }
 
@@ -51,10 +53,10 @@ public class AdviceController {
     }
 
     @GetMapping("/tag/{tagName}")
-    public List<AdviceDto> listByTag(@PathVariable String tagName) {
+    public List<AdviceShortDto> listByTag(@PathVariable String tagName) {
 
         return adviceService.findByTagName(tagName).stream()
-                .map(adviceConverter::convertToAdviceDto)
+                .map(adviceConverter::convertToAdviceShortDto)
                 .collect(Collectors.toList());
     }
 
@@ -76,7 +78,7 @@ public class AdviceController {
     }
 
     @GetMapping("/weekly")
-    public AdviceDto getWeekly() {
-        return adviceConverter.convertToAdviceDto(adviceService.getWeekly());
+    public AdviceOnlyDto getWeekly() {
+        return adviceConverter.convertToAdviceOnlyDto(adviceService.getWeekly());
     }
 }
